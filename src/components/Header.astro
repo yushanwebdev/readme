@@ -17,12 +17,23 @@ const { activeNav } = Astro.props;
       <a href="/" class="logo whitespace-nowrap">
         {
           LOGO_IMAGE.enable ? (
-            <img
-              src={`/assets/${LOGO_IMAGE.svg ? "logo.svg" : "logo.png"}`}
-              alt={SITE.title}
-              width={LOGO_IMAGE.width}
-              height={LOGO_IMAGE.height}
-            />
+            <>
+              <picture>
+                <source
+                  srcset="/assets/profile.jpeg"
+                  media="(min-width: 640px)"
+                  width="60"
+                  height="80"
+                />
+                <img
+                  src="/assets/profile.png"
+                  alt="Description of the image"
+                  class="rounded-3xl"
+                  width="48"
+                  height="48"
+                />
+              </picture>
+            </>
           ) : (
             SITE.title
           )
@@ -63,11 +74,6 @@ const { activeNav } = Astro.props;
           <li>
             <a href="/tags/" class={activeNav === "tags" ? "active" : ""}>
               Tags
-            </a>
-          </li>
-          <li>
-            <a href="/about/" class={activeNav === "about" ? "active" : ""}>
-              About
             </a>
           </li>
           <li>
@@ -128,6 +134,12 @@ const { activeNav } = Astro.props;
   }
   .logo {
     @apply absolute py-1 text-xl font-semibold sm:static sm:text-2xl;
+  }
+  .logo img {
+    @apply sm:grayscale sm:hover:grayscale-0;
+  }
+  html[data-theme="dark"] .logo img {
+    @apply grayscale-0;
   }
   .hamburger-menu {
     @apply self-end p-2 sm:hidden;
