@@ -5,7 +5,7 @@ export const SITE: Site = {
   author: "Yushan Fernando",
   desc: `I'm a frontend engineer. I'm truly passionate about the Web, Open Source, UI/UX, Developer Experience (DX), Design Systems, and React.`,
   title: "Yushan Fernando's blog",
-  ogImage: "astropaper-og.jpg",
+  ogImage: "yushan-og.png",
   lightAndDarkMode: true,
   postPerPage: 3,
   scheduledPostMargin: 15 * 60 * 1000, // 15 minutes

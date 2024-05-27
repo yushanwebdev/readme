@@ -2,6 +2,9 @@
 import { LOGO_IMAGE, SITE } from "@config";
 import Hr from "./Hr.astro";
 import LinkButton from "./LinkButton.astro";
+import { Image } from "astro:assets";
+import logoLg from "../assets/images/logo-lg.png";
+import logo from "../assets/images/logo.png";
 
 export interface Props {
   activeNav?: "posts" | "tags" | "about" | "search";
@@ -18,21 +21,20 @@ const { activeNav } = Astro.props;
         {
           LOGO_IMAGE.enable ? (
             <>
-              <picture>
-                <source
-                  srcset="/assets/profile.jpeg"
-                  media="(min-width: 640px)"
-                  width="60"
-                  height="80"
-                />
-                <img
-                  src="/assets/profile.png"
-                  alt="Description of the image"
-                  class="rounded-3xl"
-                  width="48"
-                  height="48"
-                />
-              </picture>
+              <Image
+                src={logoLg}
+                width={logoLg.width}
+                height={logoLg.height}
+                alt="descriptive text"
+                class="hidden h-[80px] w-[67px] rounded-3xl sm:block"
+              />
+              <Image
+                src={logo}
+                width={logo.width}
+                height={logo.height}
+                alt="descriptive text"
+                class="h-[48px] w-[48px] rounded-3xl sm:hidden"
+              />
             </>
           ) : (
             SITE.title
@@ -136,7 +138,7 @@ const { activeNav } = Astro.props;
     @apply absolute py-1 text-xl font-semibold sm:static sm:text-2xl;
   }
   .logo img {
-    @apply sm:grayscale sm:hover:grayscale-0;
+    @apply grayscale hover:grayscale-0;
   }
   html[data-theme="dark"] .logo img {
     @apply grayscale-0;
@@ -152,7 +154,7 @@ const { activeNav } = Astro.props;
     @apply flex w-full flex-col items-center sm:ml-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0;
   }
   nav ul {
-    @apply mt-4 grid w-44 grid-cols-2 grid-rows-4 gap-x-2 gap-y-2 sm:ml-0 sm:mt-0 sm:w-auto sm:gap-x-5 sm:gap-y-0;
+    @apply mt-4 grid w-44 grid-cols-2 grid-rows-3 gap-x-2 gap-y-2 sm:ml-0 sm:mt-0 sm:w-auto sm:gap-x-5 sm:gap-y-0;
   }
   nav ul li {
     @apply col-span-2 flex items-center justify-center;
